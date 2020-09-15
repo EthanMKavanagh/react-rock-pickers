@@ -3,19 +3,31 @@ import React, { Component } from 'react';
 class RockCounter extends Component {
 
   state = {
-    rockCount: 0
+    rockCount: 45,
+    status: ''
   }
 
   onIncrease = () => {
-    this.setState({
-      rockCount: this.state.rockCount + 1
-    });
+    console.log('this.state.rockCount = ', this.state.rockCount);
+    if (this.state.rockCount < 49){
+      this.setState({
+        rockCount: this.state.rockCount + 1
+      });
+    }
+    else{
+      this.setState({
+        rockCount: this.state.rockCount + 1,
+        status: 'DONE'
+      });
+    }
   }
 
   onDecrease = () => {
-    this.setState({
-      rockCount: this.state.rockCount - 1
-    });
+    if (this.state.rockCount > 0) {
+      this.setState({
+        rockCount: this.state.rockCount - 1
+      });
+    }
   }
 
   onReset = () => {
@@ -28,7 +40,7 @@ class RockCounter extends Component {
     return (
       <div>
           <div>
-              Rocks Picked: {this.state.rockCount}
+              Rocks Picked: {this.state.rockCount} {this.state.status}
           </div>
           <div>
             <button onClick={this.onIncrease}>Increase</button>
